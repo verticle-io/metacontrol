@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>io.verticle.oss</groupId>
+	<artifactId>metacontrol</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>metacontrol</name>
+
+	<description>MetaControl is a collaborative observability platform for tech teams with complex environments under their responsibility.</description>
+
+	<developers>
+		<developer>
+			<name>Samuel L. Jones</name>
+			<email>sam@verticle.io</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+    <packaging>pom</packaging>
+
+    <modules>
+		<module>frontend</module>
+		<module>backend</module>
+    </modules>
+
+</project>
