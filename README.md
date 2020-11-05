@@ -1,5 +1,7 @@
 # MetaControl
 
+[![Join the chat at https://gitter.im/verticle-io/metacontrol](https://badges.gitter.im/verticle-io/metacontrol.svg)](https://gitter.im/verticle-io/metacontrol?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 MetaControl is a collaborative observability platform for tech teams with complex environments under their responsibility.
 It helps them to increase their operational excellence by sharing holistic insights centrally at a simplified, unstandable level.
 
