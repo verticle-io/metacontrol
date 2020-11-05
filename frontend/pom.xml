@@ -17,7 +17,7 @@
         <resources>
             <resource>
                 <directory>./dist/metacontrol</directory>
-                <targetPdath>static</targetPdath>
+                <targetPath>static</targetPath>
             </resource>
         </resources>
         <plugins>
