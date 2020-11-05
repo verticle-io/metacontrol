@@ -22,6 +22,6 @@ jobs:
       - name: docker push
         run: |
           echo "publishing image"
-          IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/service:0.0.1"
+          IMAGE_NAME="docker.pkg.github.com/${GITHUB_REPOSITORY}/service:0.0.1-SNAPSHOT"
           echo "${{ github.token }}" | docker login https://docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
           docker push $IMAGE_NAME
