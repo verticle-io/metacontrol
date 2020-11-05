@@ -3,33 +3,19 @@ on: [push]
 
 jobs:
   build:
-    docker:
-      - image: circleci/openjdk:11.0.1-jdk
-
-    working_directory: ~/metacontrol
+    runs-on: ubuntu-latest
 
     steps:
-      # git pull
-      - checkout
-
-      # setup testing env
-      - setup_remote_docker
-
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - metacontrol-{{ checksum "pom.xml" }}
-
-      - run: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: metacontrol-{{ checksum "pom.xml" }}
-
-      - run: mvn clean package
-
-      - store_artifacts:
-          path: target/classes
-          destination: metacontrol
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
