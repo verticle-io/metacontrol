@@ -1,0 +1,35 @@
+name: metacontrol-ci
+on: [push]
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11.0.1-jdk
+
+    working_directory: ~/metacontrol
+
+    steps:
+      # git pull
+      - checkout
+
+      # setup testing env
+      - setup_remote_docker
+
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - metacontrol-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: metacontrol-{{ checksum "pom.xml" }}
+
+      - run: mvn clean package
+
+      - store_artifacts:
+          path: target/classes
+          destination: metacontrol
