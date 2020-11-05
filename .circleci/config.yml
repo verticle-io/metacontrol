@@ -4,7 +4,7 @@ orbs:
   maven: circleci/maven@1.0.3
 
 jobs:
-  maven/test:
+  maven_test:
     docker:
       - image: cimg/openjdk:11.0
     steps:
