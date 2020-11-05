@@ -1,19 +1,35 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@1.0.3
-
 jobs:
-  maven_test:
+  build:
     docker:
-      - image: cimg/openjdk:11.0
+      - image: circleci/openjdk:11.0.1-jdk
+
+    working_directory: ~/metacontrol
+
     steps:
+      # git pull
+      - checkout
+
+      # setup testing env
       - setup_remote_docker:
-          version: 19.03.13
           docker_layer_caching: true
 
-workflows:
-  maven_test:
-    jobs:
-      - maven/test # checkout, build, test, and upload test results
 
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - metacontrol-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: metacontrol-{{ checksum "pom.xml" }}
+
+      - run: mvn clean package
+
+      - store_artifacts:
+          path: target/classes
+          destination: metacontrol
